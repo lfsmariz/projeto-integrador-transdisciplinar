@@ -3,11 +3,13 @@ import { allProducts, getProductById } from "../usecases/product.js";
 const router = Router();
 
 router.get("/list-all", async (req, res) => {
-    let products = {}
+    const { promotion, category } = req.query;
+    const promotionBoolean = promotion === 'true';
+    let products = {};
     try {
-        products = await allProducts();
+        products = await allProducts(promotionBoolean, category);
     } catch (error) {
-        res.status(500).send("invalid register");
+        res.status(500).send("registro inválido");
         return;
     }
     res.send(products);

@@ -1,8 +1,16 @@
 import Product from "../repository/product.js";
 
-export const allProducts = async () => {
+export const allProducts = async (promotion, category) => {
     try {
-        const products = await Product.class.findAll();
+        const filter = {};
+        if (promotion !== undefined) {
+            filter.promotion = promotion;
+        }
+        if (category !== undefined) {
+            filter.category = category;
+        }
+        
+        const products = await Product.class.findAll({ where: filter });
         return products;
     } catch (error) {
         console.error("Erro ao recuperar todos os produtos:", error);
