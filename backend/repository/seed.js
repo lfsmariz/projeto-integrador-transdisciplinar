@@ -1,6 +1,5 @@
 import User from "../repository/user.js";
 import Product from "../repository/product.js";
-import { v4 as uuidv4 } from "uuid";
 
 const seedUsers = async () => {
     const users = [
@@ -19,10 +18,35 @@ seedUsers()
     .catch((error) => console.error("Erro ao criar usuários de teste:", error));
 
 const categories = ["normal", "especial"];
+const fixedUuids = [
+    "e7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "f7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "g7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "h7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "i7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "j7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "k7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "l7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "m7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "n7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "o7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "p7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "q7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "r7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "s7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "t7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "u7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "v7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "w7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "x7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e",
+    "y7b3c1a0-1f3e-4c5b-8c3e-1f3e4c5b8c3e"
+];
+
+
 
 const seedProducts = async () => {
     const products = Array.from({ length: 20 }, (_, index) => ({
-        id: uuidv4(), // Exemplo de ID único
+        id: fixedUuids[index], // Exemplo de ID único
         name: `Donnut ${index + 1}`,
         description: `Delicioso donnut sabor ${index + 1}`,
         urlImage: `http://example.com/donnut${index + 1}.jpg`,

@@ -8,7 +8,7 @@ const ModelProduct =
     {
       id: {
         primaryKey: true,
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         allowNull: false,
         unique: true,
       },
@@ -32,6 +32,11 @@ const ModelProduct =
         type: DataTypes.STRING,
         allowNull: false,
       },
+      promotion: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
     }
 
-export default {class: Product, model: ModelProduct};
+export default { class: Product, model: ModelProduct, args: {} };

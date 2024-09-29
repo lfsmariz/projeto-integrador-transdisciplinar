@@ -27,4 +27,4 @@ const ModelUser =
       },
     }
 
-export default {class: User, model: ModelUser};
+export default { class: User, model: ModelUser, args: {} };
