@@ -18,6 +18,7 @@ export async function addToCart(userId, productId, quantity) {
         console.log('Novo registro criado no carrinho:', novoRegistro);
     } catch (error) {
         console.error('Erro ao criar registro no carrinho:', error);
+        throw error;
     }
 }
 
@@ -28,5 +29,6 @@ export async function removeFromCart(userId, productId) {
         });
     } catch (error) {
         console.error('Erro ao remover registro do carrinho:', error);
+        throw error;
     }
 }

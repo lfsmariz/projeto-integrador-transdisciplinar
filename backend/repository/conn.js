@@ -4,6 +4,7 @@ import User from './user.js';
 import Product from './product.js';
 import { seedUsers, seedProducts } from './seed.js';
 import Cart from './cart.js';
+import Order from './order.js';
 
 const sequelize = new Sequelize({
   dialect: PostgresDialect,
@@ -17,12 +18,24 @@ const sequelize = new Sequelize({
 
 const initModels = async (sequelize, ...models) => {
   models.forEach(async model => {
-    await model.class.init(model.model, { sequelize });
+    const args = {
+      sequelize,
+      ...model.args
+    }
+    await model.class.init(model.model, args);
   });
 
-  //relationships
-  User.class.belongsToMany(Product.class, { through: Cart.class });
-  Product.class.belongsToMany(User.class, { through: Cart.class });
+  //relationship products and cart
+  User.class.hasMany(Cart.class, { as: 'carts' });
+  Cart.class.belongsTo(User.class, { as: 'user' });
+  Product.class.hasMany(Cart.class, { as: 'carts' });
+  Cart.class.belongsTo(Product.class, { as: 'product' });
+
+  //relationship products and order
+  User.class.hasMany(Order.class, { as: 'orders' });
+  Order.class.belongsTo(User.class, { as: 'user' });
+  Product.class.hasMany(Order.class, { as: 'orders' });
+  Order.class.belongsTo(Product.class, { as: 'product' });
 }
 
 const seed = async () => {
@@ -30,7 +43,7 @@ const seed = async () => {
   await seedProducts();
 }
 
-const models = [User, Product, Cart];
+const models = [User, Product, Cart, Order];
 
 export const connectToDatabase = async () => {
   try {

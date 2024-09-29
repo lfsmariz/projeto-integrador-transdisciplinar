@@ -7,7 +7,16 @@ const ModelCart = {
     quantity: {
         type: DataTypes.INTEGER,
         allowNull: false,
-    }
+    },
 }
 
-export default {class: Cart, model: ModelCart};
+const args = {
+    indexes: [
+        {
+            unique: true,
+            fields: ['userId', 'productId']
+        }
+    ]
+}
+
+export default { class: Cart, model: ModelCart, args };
