@@ -53,6 +53,7 @@ const seedProducts = async () => {
         price: (1.5 + index * 0.5).toFixed(2), // Preço variando de 1.50 a 10.50
         stock: Math.floor(Math.random() * 100) + 1, // Estoque aleatório entre 1 e 100
         category: categories[Math.floor(Math.random() * categories.length)], // Categoria aleatória
+        promotion: Math.random() < 0.3, // 30% de chance de ser um produto com promoção
     }));
 
     for (const product of products) {
