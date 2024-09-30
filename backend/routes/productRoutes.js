@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { allProducts, getProductById } from "../usecases/product.js";
+import { allProducts, getProductById, setEvaluation } from "../usecases/product.js";
 const router = Router();
 
 router.get("/list-all", async (req, res) => {
@@ -27,5 +27,17 @@ router.get("/:productId", async (req, res) => {
     }
     res.send(product);
 });
+
+router.post("/:productId/evaluation", async (req, res) => {
+    const { productId } = req.params;
+    const { evaluation, userId } = req.body;
+    try {
+        await setEvaluation(productId, evaluation, userId);
+    } catch (error) {
+        res.status(500).send("Erro ao criar a avaliação");
+        return;
+    }
+    res.send("Avaliação criada com sucesso");
+}); 
 
 export { router as productRoutes };

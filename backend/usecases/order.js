@@ -14,13 +14,43 @@ export async function createOrder(userId, products) {
         const records = products.map(product => ({
             orderId: uuid,
             userId: user.id,
-            productId: product,
+            productId: product.id,
+            quantity: product.quantity,
         }));
 
-        const novoRegistro = await Order.class.bulkCreate(records);
+        const newOrder = await Order.class.bulkCreate(records);
 
-        console.log('Novo registro criado na tabela de pedidos:', novoRegistro);
+        console.log('Novo registro criado na tabela de pedidos:', newOrder);
+        return uuid;
     } catch (error) {
         console.error('Erro ao criar registro na tabela de pedidos:', error);
+    }
+}
+
+export async function getOrderById(orderId) {
+    try {
+        const order = await Order.class.findAll({ where: { orderId } });
+        return order;
+    } catch (error) {
+        console.error('Erro ao buscar pedido:', error);
+        throw error;
+    }
+}
+
+export async function getOrdersByUserId(userId) {
+    try {
+        const orders = await Order.class.findAll({ where: { userId } });
+        const groupedOrders = orders.reduce((acc, order) => {
+            const orderId = order.orderId;
+            if (!acc[orderId]) {
+                acc[orderId] = [];
+            }
+            acc[orderId].push(order);
+            return acc;
+        }, {});
+        return Object.values(groupedOrders);
+    } catch (error) {
+        console.error('Erro ao buscar pedidos do usuário:', error);
+        throw error;
     }
 }
