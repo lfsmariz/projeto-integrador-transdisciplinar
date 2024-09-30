@@ -30,9 +30,9 @@ router.get("/:productId", async (req, res) => {
 
 router.post("/:productId/evaluation", async (req, res) => {
     const { productId } = req.params;
-    const { evaluation, userId } = req.body;
+    const { evaluation, userId, comment } = req.body;
     try {
-        await setEvaluation(productId, evaluation, userId);
+        await setEvaluation(productId, evaluation, userId, comment);
     } catch (error) {
         res.status(500).send("Erro ao criar a avaliação");
         return;

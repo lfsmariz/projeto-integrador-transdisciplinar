@@ -8,6 +8,10 @@ const ModelEvaluation = {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    comment: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+    }
 }
 
 const args = {
