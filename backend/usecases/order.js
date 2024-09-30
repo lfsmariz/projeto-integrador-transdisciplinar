@@ -2,6 +2,11 @@ import Order from "../repository/order.js";
 import User from "../repository/user.js";
 import { v4 as uuidv4 } from "uuid";
 
+const OrderStatus = {
+    PREPARING: 'preparing',
+    DELIVERING: 'delivering',
+    DELIVERED: 'delivered',
+};
 
 export async function createOrder(userId, products) {
     try {
@@ -16,6 +21,7 @@ export async function createOrder(userId, products) {
             userId: user.id,
             productId: product.id,
             quantity: product.quantity,
+            status: OrderStatus.PENDING,
         }));
 
         const newOrder = await Order.class.bulkCreate(records);
@@ -24,6 +30,16 @@ export async function createOrder(userId, products) {
         return uuid;
     } catch (error) {
         console.error('Erro ao criar registro na tabela de pedidos:', error);
+    }
+}
+
+export async function updateStatus(orderId, status) {
+    try {
+        const order = await Order.class.findByPk(orderId);
+        order.status = status;
+        await order.save();
+    } catch (error) {
+        console.error('Erro ao atualizar status do pedido:', error);
     }
 }
 
