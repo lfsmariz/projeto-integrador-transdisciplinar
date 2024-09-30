@@ -1,5 +1,5 @@
 import Product from "../repository/product.js";
-
+import Evaluation from "../repository/evaluation.js";
 export const allProducts = async (promotion, category) => {
     try {
         const filter = {};
@@ -31,4 +31,13 @@ export const getProductById = async (id) => {
     }
 };
 
+export const setEvaluation = async (id, evaluation, userId) => {
+    try {
+        const newEvaluation = await Evaluation.class.create({ evaluation, productId: id, userId });
+        return newEvaluation;
+    } catch (error) {
+        console.error("Erro ao criar a avaliação:", error);
+        throw error;
+    }
+};
 

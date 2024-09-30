@@ -2,6 +2,7 @@ import { Sequelize } from '@sequelize/core';
 import { PostgresDialect } from '@sequelize/postgres';
 import User from './user.js';
 import Product from './product.js';
+import Evaluation from './evaluation.js';
 import { seedUsers, seedProducts } from './seed.js';
 import Cart from './cart.js';
 import Order from './order.js';
@@ -36,6 +37,12 @@ const initModels = async (sequelize, ...models) => {
   Order.class.belongsTo(User.class, { as: 'user' });
   Product.class.hasMany(Order.class, { as: 'orders' });
   Order.class.belongsTo(Product.class, { as: 'product' });
+
+  //relationship products and evaluation
+  User.class.hasMany(Evaluation.class, { as: 'evaluations' });
+  Evaluation.class.belongsTo(User.class, { as: 'user' });
+  Product.class.hasMany(Evaluation.class, { as: 'evaluations' });
+  Evaluation.class.belongsTo(Product.class, { as: 'product' });
 }
 
 const seed = async () => {
@@ -43,7 +50,7 @@ const seed = async () => {
   await seedProducts();
 }
 
-const models = [User, Product, Cart, Order];
+const models = [User, Product, Cart, Order, Evaluation];
 
 export const connectToDatabase = async () => {
   try {

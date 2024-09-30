@@ -8,7 +8,15 @@ const ModelOrder =
       orderId: {
         type: DataTypes.STRING,
         allowNull: false,
-      }
+      },
+      quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    evaluation: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    }
     }
 
 export default { class: Order, model: ModelOrder, args: {} };
