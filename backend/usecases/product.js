@@ -31,9 +31,9 @@ export const getProductById = async (id) => {
     }
 };
 
-export const setEvaluation = async (id, evaluation, userId) => {
+export const setEvaluation = async (id, evaluation, userId, comment) => {
     try {
-        const newEvaluation = await Evaluation.class.create({ evaluation, productId: id, userId });
+        const newEvaluation = await Evaluation.class.create({ evaluation, productId: id, userId, comment });
         return newEvaluation;
     } catch (error) {
         console.error("Erro ao criar a avaliação:", error);
