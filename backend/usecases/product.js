@@ -9,7 +9,7 @@ export const allProducts = async (promotion, category) => {
         if (category !== undefined) {
             filter.category = category;
         }
-        
+
         const products = await Product.class.findAll({ where: filter });
         return products;
     } catch (error) {
@@ -41,3 +41,12 @@ export const setEvaluation = async (id, evaluation, userId, comment) => {
     }
 };
 
+export const getEvaluationsByProductId = async (id) => {
+    try {
+        const evaluations = await Evaluation.class.findAll({ where: { productId: id } });
+        return evaluations;
+    } catch (error) {
+        console.error("Erro ao buscar as avaliações:", error);
+        throw error;
+    }
+};

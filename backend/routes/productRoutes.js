@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { allProducts, getProductById, setEvaluation } from "../usecases/product.js";
+import { allProducts, getProductById, setEvaluation, getEvaluationsByProductId } from "../usecases/product.js";
 const router = Router();
 
 router.get("/list-all", async (req, res) => {
@@ -38,6 +38,16 @@ router.post("/:productId/evaluation", async (req, res) => {
         return;
     }
     res.send("Avaliação criada com sucesso");
-}); 
+});
 
+router.get("/evaluations/:productId", async (req, res) => {
+    const { productId } = req.params;
+    let evaluations
+    try {
+        evaluations = await getEvaluationsByProductId(productId);
+    } catch (error) {
+        res.status(500).send("Erro ao buscar as avaliações");
+    }
+    res.send(evaluations);
+});
 export { router as productRoutes };

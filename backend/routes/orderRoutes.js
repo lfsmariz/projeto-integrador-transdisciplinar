@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createOrder, getOrderById, getOrdersByUserId } from "../usecases/order.js";
+import { createOrder, getOrderById, getOrdersByUserId, updateStatus } from "../usecases/order.js";
 
 const router = Router();
 
@@ -37,6 +37,16 @@ router.get("/:userId/list-orders", async (req, res) => {
         res.status(500).send("not found orders");
     }
     res.send(orders);
+});
+
+router.put("/:orderId/update-status", async (req, res) => {
+    const { orderId } = req.params;
+    const { status } = req.body;
+    try {
+        await updateStatus(orderId, status);
+    } catch (error) {
+        res.status(500).send("not updated status");
+    }
 });
 
 export { router as orderRoutes };
