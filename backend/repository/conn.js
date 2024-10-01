@@ -6,6 +6,7 @@ import Evaluation from './evaluation.js';
 import { seedUsers, seedProducts } from './seed.js';
 import Cart from './cart.js';
 import Order from './order.js';
+import Chat from './chat.js';
 
 const sequelize = new Sequelize({
   dialect: PostgresDialect,
@@ -50,7 +51,7 @@ const seed = async () => {
   await seedProducts();
 }
 
-const models = [User, Product, Cart, Order, Evaluation];
+const models = [User, Product, Cart, Order, Evaluation, Chat];
 
 export const connectToDatabase = async () => {
   try {
