@@ -8,6 +8,10 @@ const ModelCart = {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    customization: {
+        type: DataTypes.STRING(1000),
+        allowNull: true,
+    },
 }
 
 const args = {
