@@ -1,5 +1,6 @@
 import Order from "../repository/order.js";
 import User from "../repository/user.js";
+import Product from "../repository/product.js";
 import { v4 as uuidv4 } from "uuid";
 
 const OrderStatus = {
@@ -21,15 +22,47 @@ export async function createOrder(userId, products) {
             userId: user.id,
             productId: product.id,
             quantity: product.quantity,
-            status: OrderStatus.PENDING,
+            status: OrderStatus.PREPARING,
         }));
 
+        await updatePoints(user, products, discount);
+        
         const newOrder = await Order.class.bulkCreate(records);
 
         console.log('Novo registro criado na tabela de pedidos:', newOrder);
         return uuid;
     } catch (error) {
         console.error('Erro ao criar registro na tabela de pedidos:', error);
+    }
+}
+
+async function updatePoints(user, products, discount) {
+    try {
+        const productIds = products.map(product => product.id);
+        const foundProducts = await Product.class.findAll({ where: { id: productIds } });
+
+        if (foundProducts.length !== products.length) {
+            throw new Error('Um ou mais produtos não foram encontrados');
+        }
+
+        let totalPrice = foundProducts.reduce((total, product) => {
+            const productPrice = product.price;
+            const productQuantity = products.find(p => p.id === product.id).quantity;
+            return total + (productPrice * productQuantity);
+        }, 0);
+
+        if (discount > totalPrice) {
+            totalPrice = 0;
+        } else {
+            totalPrice -= discount;
+        }
+
+        totalPrice += totalPrice * 0.1;
+        user.points += Math.floor(totalPrice);
+        await user.save();
+
+    } catch (error) {
+        console.error('Erro ao atualizar pontos do usuário:', error);
     }
 }
 

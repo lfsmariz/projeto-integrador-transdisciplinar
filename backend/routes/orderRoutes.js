@@ -5,10 +5,9 @@ const router = Router();
 
 router.post("/:userId/create-order", async (req, res) => {
     const { userId } = req.params;
-    const { products } = req.body;
-    console.log(userId, products);
+    const { products, discount } = req.body;
     try {
-        const orderId = await createOrder(userId, products);
+        const orderId = await createOrder(userId, products, discount);
         res.send(orderId);
     } catch (error) {
         res.status(500).send("not created order");

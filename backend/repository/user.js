@@ -25,6 +25,11 @@ const ModelUser =
         type: DataTypes.STRING,
         allowNull: false,
       },
+      points: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+      },
     }
 
 export default { class: User, model: ModelUser, args: {} };
