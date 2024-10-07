@@ -40,3 +40,8 @@ export const chatMessages = async (ownerId) => {
 export const closeChat = async (chatId) => {
     await Chat.class.update({ status: "finished" }, { where: { chatId } });
 }
+
+export const retrieveDiscount = async (userId) => {
+    const user = await User.class.findByPk(userId);
+    return user.points;
+}

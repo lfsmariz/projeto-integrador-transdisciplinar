@@ -25,7 +25,7 @@ export async function createOrder(userId, products) {
             status: OrderStatus.PREPARING,
         }));
 
-        await updatePoints(user, products);
+        await updatePoints(user, products, discount);
         
         const newOrder = await Order.class.bulkCreate(records);
 
@@ -36,7 +36,7 @@ export async function createOrder(userId, products) {
     }
 }
 
-async function updatePoints(user, products) {
+async function updatePoints(user, products, discount) {
     try {
         const productIds = products.map(product => product.id);
         const foundProducts = await Product.class.findAll({ where: { id: productIds } });
@@ -50,6 +50,12 @@ async function updatePoints(user, products) {
             const productQuantity = products.find(p => p.id === product.id).quantity;
             return total + (productPrice * productQuantity);
         }, 0);
+
+        if (discount > totalPrice) {
+            totalPrice = 0;
+        } else {
+            totalPrice -= discount;
+        }
 
         totalPrice += totalPrice * 0.1;
         user.points += Math.floor(totalPrice);
