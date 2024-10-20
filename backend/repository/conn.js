@@ -9,11 +9,11 @@ import Order from './order.js';
 import Chat from './chat.js';
 
 const sequelize = new Sequelize({
-  dialect: PostgresDialect,
+  dialect: 'postgres',
   database: 'donnut',
   user: 'root',
   password: '123456',
-  host: 'localhost',
+  host: 'db',
   port: 5432,
   clientMinMessages: 'notice',
 });
@@ -57,6 +57,8 @@ export const connectToDatabase = async () => {
   try {
     await sequelize.authenticate();
     console.log("Conexão com o banco de dados estabelecida com sucesso.");
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    
     await initModels(sequelize, ...models);
     await sequelize.sync({ force: true });
     await new Promise(resolve => setTimeout(resolve, 3000));
