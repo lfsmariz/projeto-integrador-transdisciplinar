@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-history">
+            <div class="message">
+                <span class="sender">João</span>
+                <p>Olá, tudo bem?</p>
+            </div>
+            <div class="message">
+                <span class="sender">Maria</span>
+                <p>Oi! Tudo ótimo e com você?</p>
+            </div>
+            <div class="message">
+                <span class="sender">João</span>
+                <p>Estou bem também!</p>
+            </div>
+        </div>
+        
+        <div class="input-container">
+            <input type="text" placeholder="Digite sua mensagem..." class="message-input">
+            <button class="send-button">Enviar</button>
+        </div>
+    </div>
+    
+    <style>
+    .chat-container {
+        max-width: 600px;
+        margin: 20px auto;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 15px;
+    }
+    
+    .chat-history {
+        height: 400px;
+        overflow-y: auto;
+        margin-bottom: 15px;
+        padding: 10px;
+    }
+    
+    .message {
+        margin-bottom: 15px;
+        background: #f5f5f5;
+        padding: 10px;
+        border-radius: 8px;
+    }
+    
+    .sender {
+        font-weight: bold;
+        color: #2c3e50;
+    }
+    
+    .input-container {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .message-input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    
+    .send-button {
+        padding: 10px 20px;
+        background: #2196F3;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    .send-button:hover {
+        background: #1976D2;
+    }
+    
+    /* Versão Mobile */
+    @media (max-width: 480px) {
+        .chat-container {
+            margin: 10px;
+            padding: 10px;
+        }
+    
+        .chat-history {
+            height: 70vh;
+        }
+    
+        .input-container {
+            flex-direction: row;
+        }
+    
+        .message-input {
+            font-size: 16px; /* Melhor para digitação em mobile */
+        }
+    
+        .send-button {
+            padding: 10px 15px;
+        }
+    }
+    </style>
+    
+</body>
+</html>

@@ -1,0 +1,80 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+header div {
+    display: flex;
+    align-items: center;
+}
+header img {
+    width: 30px;
+    height: 30px;
+    margin-right: 30px;
+}
+header h1 {
+    font-size: 24px;
+    color: #333;
+}
+header button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+main h2 {
+    margin-bottom: 20px;
+}
+main div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+main div > div {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    width: 150px;
+}
+main div img {
+    width: 100%;
+    border-radius: 5px;
+}
+main div h3 {
+    margin: 10px 0;
+}
+main div p {
+    margin: 5px 0;
+}
+main div button {
+    padding: 5px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    margin-top: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}

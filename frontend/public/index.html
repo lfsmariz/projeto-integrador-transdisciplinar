@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="./styles/index.css">
+<script src="./scripts/index.js"></script>
+<body>
+<header>
+    <div>
+        <a href="./cart.html">
+            <img src="./images/shopping-cart.png" alt="Carrinho">
+        </a>
+        <h1>Loja de Donuts</h1>
+    </div>
+    <button><a href="./login.html">Login</a></button>
+</header>
+
+<main>
+    <h2>Nossos Donuts</h2>
+    <div>
+        <label>
+            <input type="checkbox" id="filterPromotion" onchange="fetchDonuts()"> Promoções
+        </label>
+        <label>
+            <input type="checkbox" id="filterCategory" onchange="fetchDonuts()"> Categoria Especial
+        </label>
+    </div>
+    <div>
+        
+    </div>
+</main>
+
+<footer >
+    <p>&copy; 2023 Loja de Donuts. Todos os direitos reservados.</p>
+</footer>
+</body>
+</html>
