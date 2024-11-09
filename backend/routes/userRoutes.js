@@ -15,14 +15,14 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-    const { name, password, email } = req.body;
+    const { password, email } = req.body;
     try {
-        await login(email, password);
+        const user = await login(email, password);
+        res.send(user);
     } catch (error) {
         res.status(500).send("invalid login");
         return;
     }
-    res.send(`Nome: ${name}, Senha: ${password}, Email: ${email}`);
 });
 
 router.post("/chat", async (req, res) => {

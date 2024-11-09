@@ -49,7 +49,7 @@ const seedProducts = async () => {
         id: fixedUuids[index], // Exemplo de ID único
         name: `Donnut ${index + 1}`,
         description: `Delicioso donnut sabor ${index + 1}`,
-        urlImage: `http://example.com/donnut${index + 1}.jpg`,
+        urlImage: `./images/donut.jpeg`,
         price: (1.5 + index * 0.5).toFixed(2), // Preço variando de 1.50 a 10.50
         stock: Math.floor(Math.random() * 100) + 1, // Estoque aleatório entre 1 e 100
         category: categories[Math.floor(Math.random() * categories.length)], // Categoria aleatória

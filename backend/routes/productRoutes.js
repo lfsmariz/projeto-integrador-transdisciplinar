@@ -4,7 +4,10 @@ const router = Router();
 
 router.get("/list-all", async (req, res) => {
     const { promotion, category } = req.query;
-    const promotionBoolean = promotion === 'true';
+    let promotionBoolean;
+    if (promotion !== undefined) {
+        promotionBoolean = promotion === 'true';
+    }
     let products = {};
     try {
         products = await allProducts(promotionBoolean, category);

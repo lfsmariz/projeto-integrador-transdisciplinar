@@ -7,7 +7,10 @@ import { connectToDatabase } from "./repository/conn.js";
 
 connectToDatabase();
 
+ // Start of Selection
 const app = express();
+import cors from "cors";
+app.use(cors());
 app.use(express.json());
 
 app.use("/user", userRoutes);

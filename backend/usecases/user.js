@@ -11,7 +11,7 @@ export const login = async (email, password) => {
     if (password !== user.password) {
         throw new Error("Invalid password");
     }
-    return "success";
+    return user;
 }
 
 export const register = async (name, cpf, email, password) => {
