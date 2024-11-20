@@ -25,7 +25,7 @@ export async function createOrder(userId, products) {
             status: OrderStatus.PREPARING,
         }));
 
-        await updatePoints(user, products, discount);
+        await updatePoints(user, products, 0);
         
         const newOrder = await Order.class.bulkCreate(records);
 
