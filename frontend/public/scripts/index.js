@@ -49,7 +49,7 @@ async function fetchDonuts() {
                 <img src="${donut.urlImage}" alt="${donut.name}">
                 <h3>${donut.name}</h3>
                 <p>R$ ${donut.price}</p>
-                <button>Adicionar ao Carrinho</button>
+                <button><a href="./detail.html?id=${donut.id}">Detalhes</a></button>
             `;
             mainDiv.appendChild(donutDiv);
         });

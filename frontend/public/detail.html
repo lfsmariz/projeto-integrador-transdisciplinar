@@ -1,0 +1,103 @@
+<!-- frontend/public/detail.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto</title>
+</head>
+<body>
+    <div class="product-detail">
+        <img id="product-image" src="" alt="Imagem do Produto">
+        <h1 id="product-name"></h1>
+        <p id="product-description"></p>
+        <label for="quantity">Quantidade:</label>
+        <select id="quantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button id="add-to-cart">Adicionar ao Carrinho</button>
+    </div>
+    <div class="product-reviews">
+        <h2>Avaliações do Produto</h2>
+        <div class="review">
+            <p><strong>Usuário 1:</strong> Este produto é incrível! Superou minhas expectativas.</p>
+            <p class="rating">⭐️⭐️⭐️⭐️⭐️</p>
+        </div>
+        <div class="review">
+            <p><strong>Usuário 2:</strong> Boa qualidade, mas o preço poderia ser mais acessível.</p>
+            <p class="rating">⭐️⭐️⭐️⭐️</p>
+        </div>
+        <div class="review">
+            <p><strong>Usuário 3:</strong> Não gostei muito, o produto chegou com defeito.</p>
+            <p class="rating">⭐️</p>
+        </div>
+        <div class="review">
+            <p><strong>Usuário 4:</strong> Excelente! Com certeza compraria novamente.</p>
+            <p class="rating">⭐️⭐️⭐️⭐️⭐️</p>
+        </div>
+    </div>
+    <style>
+        .product-reviews {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .review {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .review:last-child {
+            border-bottom: none;
+        }
+        .rating {
+            color: gold;
+        }
+    </style>
+
+    <script src="scripts/detail.js"></script>
+    <style>
+    @media (max-width: 600px) {
+        .product-detail {
+            padding: 10px;
+            text-align: center;
+        }
+
+        #product-image {
+            width: 100%;
+            height: auto;
+        }
+
+        h1 {
+            font-size: 1.5em;
+        }
+
+        p {
+            font-size: 1em;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        #quantity {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        #add-to-cart {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+    }
+    </style>
+</body>
+</html>
